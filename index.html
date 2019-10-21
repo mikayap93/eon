@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>AVR Platform</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
    <script src="js/scroll-in-view.js"></script>
- 
+ <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 </head>
 <body>
   
@@ -18,35 +20,41 @@
     <div class="col-2 col-lg-3 col-sm-4 col-xs-12 module slideLeft">
     	<div class="logo"><img src="images/AVRplatform.png"></div>
     </div>
-    <div class="col-lg-7 col-sm-4 col-xs-auto">
+    <div class="col-lg-6 col-sm-4 col-xs-auto">
     </div>
-    <div class="col-lg-2 col-sm-4 col-xs-12 module slideRight">
+    <div class="col-lg-3 col-sm-4 col-xs-12 module slideRight">
       <button class="startforFreeBtn">Start For Free</button>
     </div>
   </div>
 </div>
-<div class="container">
-  <div class="row vertical-align sideImg">
+<div class="container sideImg">
+  <div class="row vertical-align">
     <div class="col-lg-8 col-xs-12">
     </div>
     <div class="col-lg-4 col-xs-12 module slideLeft">
     	<div class="loginContainer">
         
-        <h1>Sign In</h3>        
-        <input type="text" value="EMAIL*" required> 
-        <input type="password" value="PASSWORD*" required>
+        <h1>Sign In</h1>   
+        <form id="second_form" method="post" action="">
+  
+    <input type="email" id="user_email" name="user_email" placeholder="EMAIL*" required>
+    <input type="password" id="psword" name="psword" placeholder="PASSWORD*"  required>
+
+    <input type="submit" class="nxtBtn" value="Next →" />
+
+  <div class="rgt"><a href="#">Forget Password</a><br>Not a member? - <a href="#">Start For Free</a></div>
+</form>     
+     
+        
         </div>
-      
-    </div>
+      	
+        
+      </div>
   </div>
+  
 </div>
 <script>
 			$(document).ready(function(){
-				$('.menuAction').click(function(){
-					$('body').toggleClass('overflow');
-					$('.menunav').toggleClass('open-menu');
-					$('.navigation').toggleClass('active');
-				});
 				var win = $(window);
 				var allMods = $(".module");
 				// Already visible modules
@@ -68,7 +76,36 @@
 					} 
 				});
 				});
+				
+				$('form[id="second_form"]').validate({
+  rules: {
+    fname: 'required',
+    lname: 'required',
+    user_email: {
+      required: true,
+      email: true,
+    },
+    psword: {
+      required: true,
+      minlength: 8,
+    }
+  },
+  messages: {
+    fname: 'This field is required',
+    lname: 'This field is required',
+    user_email: 'Enter a valid email',
+    psword: {
+      minlength: 'Password must be at least 8 characters long'
+    }
+  },
+  submitHandler: function(form) {
+    form.submit();
+  }
+});
 		});
+		
+		
 </script>
+
 </body>
 </html>
